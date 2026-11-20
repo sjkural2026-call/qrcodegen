@@ -1,6 +1,7 @@
 import { ReactNode, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Menu, Moon, QrCode, Sun, X } from 'lucide-react';
+import { LANDING_LIST } from '../seo/landingData';
 
 const nav: [string, string][] = [['/', 'Home'], ['/url-to-qr', 'URL QR'], ['/wifi-qr', 'Wi-Fi QR'], ['/contact-qr', 'Contact QR']];
 
@@ -37,6 +38,9 @@ export default function Layout({ children }: { children: ReactNode }) {
       </header>
       <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">{children}</main>
       <footer className="border-t border-line py-6 text-center text-sm text-muted">
+        <nav aria-label="QR code generators" className="mx-auto mb-3 flex max-w-6xl flex-wrap justify-center gap-x-5 gap-y-1 px-4">
+          {LANDING_LIST.map((p) => <Link key={p.path} to={p.path} className="hover:text-ink hover:underline">{p.navLabel}</Link>)}
+        </nav>
         © {new Date().getFullYear()} QR Code Studio · Create. Customize. Download. Free.
         <br />QR codes are generated in your browser; your data is not uploaded.
       </footer>
